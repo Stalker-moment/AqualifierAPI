@@ -1,6 +1,16 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/server.js" },
-    { "source": "/(.*)", "destination": "/server.js" }
+    { "source": "/api/get/system", "destination": "/controllers/system/getsystem.js" },
+    { "source": "/api/edit/system", "destination": "/controllers/system/editsystem.js" },
+    { "source": "/api/get/voltage", "destination": "/controllers/voltage/getvoltage.js" },
+    { "source": "/api/edit/voltage", "destination": "/controllers/voltage/editvoltage.js" },
+    { "source": "/api/get/sensor", "destination": "/controllers/sensor/getsensor.js" },
+    { "source": "/api/edit/sensor", "destination": "/controllers/sensor/editsensor.js" },
+    { "source": "/api/get/actuator", "destination": "/controllers/actuator/getactuator.js" },
+    { "source": "/api/edit/actuator", "destination": "/controllers/actuator/editactuator.js" },
+    { "source": "/api/get/apiRT", "destination": "/controllers/api/RT/getRT.js" },
+    { "source": "/api/file/apiRT", "destination": "/controllers/api/RT/fileRT.js" },
+    { "source": "/api/file/apiError", "destination": "/controllers/api/error/fileError.js" },
+    { "source": "/(.*)", "destination": "/app.js" }
   ]
 }
