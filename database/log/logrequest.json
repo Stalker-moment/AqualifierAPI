@@ -1,0 +1,54 @@
+[
+  {
+    "tanggal": "2023-11-02",
+    "data": [
+      {
+        "timestamp": "2023-11-02T23:40:08.627Z",
+        "namafile": "getsystem.js",
+        "action": "All",
+        "ResponseTime": "7.20"
+      },
+      {
+        "timestamp": "2023-11-02T23:42:14.344Z",
+        "namafile": "getsystem.js",
+        "action": "All",
+        "ResponseTime": "4.09"
+      },
+      {
+        "timestamp": "2023-11-02T23:42:52.193Z",
+        "namafile": "getvoltage.js",
+        "action": "All",
+        "ResponseTime": "7.19"
+      },
+      {
+        "timestamp": "2023-11-02T23:43:15.509Z",
+        "namafile": "getvoltage.js",
+        "action": "All",
+        "ResponseTime": "0.94"
+      },
+      {
+        "timestamp": "2023-11-02T23:43:18.821Z",
+        "namafile": "getvoltage.js",
+        "action": "All",
+        "ResponseTime": "1.21"
+      },
+      {
+        "timestamp": "2023-11-02T23:59:30.338Z",
+        "namafile": "editsystem.js",
+        "action": "Switch_true",
+        "ResponseTime": "1.53"
+      }
+    ]
+  },
+  {
+    "tanggal": "2023-11-03",
+    "data": [
+      {
+        "timestamp": "2023-11-03T00:01:08.733Z",
+        "namafile": "editsystem.js",
+        "action": "Switch_true",
+        "ResponseTime": "4.20"
+      }
+    ]
+  }
+]

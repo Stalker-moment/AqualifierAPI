@@ -1,0 +1,14 @@
+[
+  {
+    "tanggal": "2023-11-02",
+    "data": [
+      {
+        "timestamp": "2023-11-02T23:59:02.921Z",
+        "namafile": "editsystem.js",
+        "route": "api/get/edit/batch/system",
+        "code": 400,
+        "msg": "PLN and PLTS values should be different (true/false)"
+      }
+    ]
+  }
+]
