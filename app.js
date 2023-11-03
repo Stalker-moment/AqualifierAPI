@@ -4,9 +4,11 @@ const fs = require('fs'); // Import module fs
 const path = require('path')
 const axios = require('axios');
 const performance = require('performance-now');
+const cors = require('cors')
 
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
