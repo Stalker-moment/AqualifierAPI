@@ -106,26 +106,26 @@ router.get("/getrt", async(req, res) => {
           avg:{
             get:{
               UnitRT : "ms",
-              SystemRT: systemRTresult,
-              SystemSingleRT : systemSingleRTresult,
-              SensorRT : sensorRTresult,
-              SensorSingleRT : sensorSingleRTresult,
-              SensorBatchRT : sensorBatchRTresult,
-              VoltageRT : voltageRTresult,
-              VoltageSingleRT: voltageSingleRTresult,
-              VoltageBatchRT : voltageBatchRTresult,
-              ActuatorRT : actuatorRTresult,
-              ActuatorSingleRT : actuatorSingleRTresult
+              System: systemRTresult,
+              SystemSingle : systemSingleRTresult,
+              Sensor : sensorRTresult,
+              SensorSingle : sensorSingleRTresult,
+              SensorBatch : sensorBatchRTresult,
+              Voltage : voltageRTresult,
+              VoltageSingle: voltageSingleRTresult,
+              VoltageBatch : voltageBatchRTresult,
+              Actuator : actuatorRTresult,
+              ActuatorSingle : actuatorSingleRTresult
             },
             edit:{
-              SystemSingleRT : systemSingleRTeditresult,
-              SystemBatchRT : systemBatchRTeditresult,
-              SensorSingleRT : sensorSingleRTeditresult,
-              SensorBatchRT : sensorBatchRTeditresult,
-              VoltageSingleRT: voltageSingleRTeditresult,
-              VoltageBatchRT : voltageBatchRTeditresult,
-              ActuatorSingleRT : actuatorSingleRTeditresult,
-              ActuatorBatchRT : actuatorBatchRTeditresult
+              SystemSingle : systemSingleRTeditresult,
+              SystemBatch : systemBatchRTeditresult,
+              SensorSingle : sensorSingleRTeditresult,
+              SensorBatch : sensorBatchRTeditresult,
+              VoltageSingle: voltageSingleRTeditresult,
+              VoltageBatch : voltageBatchRTeditresult,
+              ActuatorSingle : actuatorSingleRTeditresult,
+              ActuatorBatch : actuatorBatchRTeditresult
             }
           }
         }
