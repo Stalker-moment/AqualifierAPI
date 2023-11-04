@@ -97,7 +97,8 @@ router.get('/voltage/:div', (req, res) => {
                     Battery2_Voltage : jsonData.Battery2_Voltage,
                     Battery1_Capacity : jsonData.Battery1_Capacity,
                     Battery2_Capacity : jsonData.Battery2_Capacity,
-                    StepDown_Voltage : jsonData.StepDown_Voltage
+                    StepDown_Voltage : jsonData.StepDown_Voltage,
+                    Unit_Capacity : jsonData.Unit_Capacity,
                 }
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
@@ -149,6 +150,7 @@ router.get('/voltage/:div', (req, res) => {
                 const proccessingdata = {
                     code: 200,
                     Unit_Voltage: jsonData.Unit_Voltage,
+                    Unit_Capacity: jsonData.Unit_Capacity,
                     Unit_Current: jsonData.Unit_Current,
                     Unit_Power: jsonData.Unit_Power,
                     Unit_Energy: jsonData.Unit_Energy,
@@ -528,6 +530,20 @@ router.get('/voltage/:div', (req, res) => {
 
                 addRT(pingTime, voltageSingleRT);
                 addLogRequest('getvoltage.js', 'unit_voltage', pingTime)
+            } else if(bagiann.toLowerCase() == 'unit_capacity'){
+                const start = performance();
+                const datasort = jsonData.Unit_Capacity;
+                const proccessingdata = {
+                    code: 200,
+                    Unit_Capacity : datasort
+                }
+                const formattedJson = JSON.stringify(proccessingdata, null, 2);
+                res.setHeader("Content-Type", "application/json"); 
+                res.send(formattedJson);
+                const end = performance(); 
+                const pingTime = (end - start).toFixed(2);
+
+                addLogRequest('getvoltage.js', 'unit_capacity', pingTime)
             } else if(bagian.toLowerCase() == 'unit_current'){
                 const start = performance();
                 const datasort = jsonData.Unit_Current;

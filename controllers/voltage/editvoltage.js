@@ -36,6 +36,7 @@ router.get('/edit/voltage', (req, res) => {
     const inverterfreqValue = parseFloat(req.query.inverter_frequency); 
     const inverterpfValue = parseFloat(req.query.inverter_pf); 
     const unitvoltValue = req.query.unit_voltage; 
+    const unitcapacityValue = req.query.unit_capacity;
     const unitcurrentValue = req.query.unit_current; 
     const unitpowerValue = req.query.unit_power; 
     const unitenergyValue = req.query.unit_energy; 
@@ -612,6 +613,36 @@ router.get('/edit/voltage', (req, res) => {
             addLogError('editvoltage.js', 'api/get/edit/voltage?unit_voltage', 500, 'Internal Server Error')
         }
         });
+    } else if(unitcapacityValue !== null && unitcapacityValue !== undefined) {
+        fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
+        if (err) {
+            res.status(500).json({ error : 'Gagal membaca file JSON' });
+            addLogError('editvoltage.js', 'api/get/edit/voltage?unit_capacity', 500, 'Gagal membaca file JSON')
+            return;
+        }
+
+        try {
+            const start = performance();
+            const jsonContent = JSON.parse(data);
+            jsonContent.Unit_Capacity = unitcapacityValue; // Mengubah nilai Pump_Booster menjadi true
+            fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
+                if (err) {
+                    res.status(500).json({ code: 500, error: "gagal menulis JSON" });
+                    addLogError('editvoltage.js', 'api/get/edit/voltage?unit_capacity', 500, 'gagal menulis JSON')
+                    return;
+                }
+                res.status(200).json({ code: 200, msg: "value Unit_Capacity berhasil diubah" });
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
+
+                addRT(pingTime, jsonFilePathSingleRT); //add record array
+                addLogRequest('editvoltage.js', 'Unit_Capacity', pingTime)
+            });
+        } catch (err) {
+            res.status(500).json({ code: 500, error: "Internal Server Error" });
+            addLogError('editvoltage.js', 'api/get/edit/voltage?unit_capacity', 500, 'Internal Server Error')
+        }
+        });
     } else if (unitcurrentValue !== null && unitcurrentValue !== undefined) {
         fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
         if (err) {
@@ -788,6 +819,7 @@ router.get('/edit/batch/voltage', (req, res) => {
     const inverterfreqValue = parseFloat(req.query.inverter_frequency); 
     const inverterpfValue = parseFloat(req.query.inverter_pf); 
     const unitvoltValue = req.query.unit_voltage; 
+    const unitcapacityValue = req.query.unit_capacity;
     const unitcurrentValue = req.query.unit_current; 
     const unitpowerValue = req.query.unit_power; 
     const unitenergyValue = req.query.unit_energy; 
@@ -843,6 +875,7 @@ router.get('/edit/batch/voltage', (req, res) => {
             jsonContent.Inverter_Frequency = inverterfreqValue
             jsonContent.Inverter_PF = inverterpfValue
             jsonContent.Unit_Voltage = unitvoltValue
+            jsonContent.Unit_Capacity = unitcapacityValue
             jsonContent.Unit_Current = unitcurrentValue
             jsonContent.Unit_Power = unitpowerValue
             jsonContent.Unit_Energy = unitenergyValue

@@ -17,9 +17,12 @@ const addLogError = require('../../function/addLogError')
 router.get('/edit/sensor', (req, res) => {
     const waterphValue = parseFloat(req.query.water_ph); 
     const waterindexValue = req.query.water_index;
+    const waterflowValue = parseFloat(req.query.water_flow);
+    const waterflowindexValue = req.query.water_flow_index;
     const soilphValue = parseFloat(req.query.soil_ph);
     const soilindexValue = req.query.soil_index;
     const soilmoistureValue = parseFloat(req.query.soil_moisture);
+    const soilmoistureindexValue = req.query.soil_moisture_index;
     const soiltempValue = parseFloat(req.query.soil_temp);
     const airtempValue = parseFloat(req.query.air_temp);
     const airhumidityValue = parseFloat(req.query.air_humidity);
@@ -31,6 +34,7 @@ router.get('/edit/sensor', (req, res) => {
     const tankpercentValue = parseFloat(req.query.tank_percentage);
     const tankcapacityValue = parseFloat(req.query.tank_capacity);
     const unitphValue = req.query.unit_ph;
+    const unitwaterValue = req.query.unit_water;
     const unitmoistureValue = req.query.unit_moisture;
     const unittempValue = req.query.unit_temp;
     const unithumidityValue = req.query.unit_humidity;
@@ -99,6 +103,66 @@ router.get('/edit/sensor', (req, res) => {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
             addLogError('editsensor.js', 'api/get/edit/sensor?water_index', 500, 'Internal Server Error')
         }
+        });
+    } else if(waterflowValue !== null && waterflowValue !== undefined && !isNaN(waterflowValue)){
+        fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
+            if (err) {
+                res.status(500).json({ code: 500, error : 'Gagal membaca file JSON' });
+                addLogError('editsensor.js', 'api/get/edit/sensor?water_flow', 500, 'Gagal membaca file JSON')
+                return;
+            }
+        
+            try {
+                const start = performance();
+                const jsonContent = JSON.parse(data);
+                jsonContent.Water_Flow = waterflowValue; // Mengubah nilai Pump_Tank menjadi true
+                fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
+                if (err) {
+                    res.status(500).json({ code: 500, error: "gagal menulis JSON" });
+                    addLogError('editsensor.js', 'api/get/edit/sensor?water_flow', 500, 'Gagal menulis JSON')
+                    return;
+                }
+                res.status(200).json({ code: 200, msg: "value Water_Flow berhasil diubah" });
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
+    
+                addRT(pingTime, jsonFilePathSingleRT); //add record array
+                addLogRequest('editsensor.js', 'Water_Flow', pingTime)
+                });
+            } catch (err) {
+                res.status(500).json({ code: 500, error: "Internal Server Error" });
+                addLogError('editsensor.js', 'api/get/edit/sensor?water_flow', 500, 'Internal Server Error')
+            }
+        });
+    } else if(waterflowindexValue !== null && waterflowindexValue !== undefined){
+        fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
+            if (err) {
+                res.status(500).json({ code: 500, error : 'Gagal membaca file JSON' });
+                addLogError('editsensor.js', 'api/get/edit/sensor?water_flow_index', 500, 'Gagal membaca file JSON')
+                return;
+            }
+        
+            try {
+                const start = performance();
+                const jsonContent = JSON.parse(data);
+                jsonContent.Water_Flow_Index = waterflowindexValue; // Mengubah nilai Pump_Tank menjadi true
+                fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
+                if (err) {
+                    res.status(500).json({ code: 500, error: "gagal menulis JSON" });
+                    addLogError('editsensor.js', 'api/get/edit/sensor?water_flow_index', 500, 'Gagal menulis JSON')
+                    return;
+                }
+                res.status(200).json({ code: 200, msg: "value Water_Flow_Index berhasil diubah" });
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
+    
+                addRT(pingTime, jsonFilePathSingleRT); //add record array
+                addLogRequest('editsensor.js', 'Water_Flow_Index', pingTime)
+                });
+            } catch (err) {
+                res.status(500).json({ code: 500, error: "Internal Server Error" });
+                addLogError('editsensor.js', 'api/get/edit/sensor?water_flow_index', 500, 'Internal Server Error')
+            }
         });
     } else if (soilphValue !== null && soilphValue !== undefined && !isNaN(soilphValue)) {
         fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
@@ -189,6 +253,36 @@ router.get('/edit/sensor', (req, res) => {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
             addLogError('editsensor.js', 'api/get/edit/sensor?soil_moisture', 500, 'Internal Server Error')
         }
+        });
+    } else if(soilmoistureindexValue !== null && soilmoistureindexValue !== undefined){
+        fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
+            if (err) {
+                res.status(500).json({ code: 500, error : 'Gagal membaca file JSON' });
+                addLogError('editsensor.js', 'api/get/edit/sensor?soil_moisture_index', 500, 'Gagal membaca file JSON')
+                return;
+            }
+        
+            try {
+                const start = performance();
+                const jsonContent = JSON.parse(data);
+                jsonContent.Soil_Moisture_Index = soilmoistureindexValue; // Mengubah nilai Pump_Tank menjadi true
+                fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
+                if (err) {
+                    res.status(500).json({ code: 500, error: "gagal menulis JSON" });
+                    addLogError('editsensor.js', 'api/get/edit/sensor?soil_moisture_index', 500, 'Gagal menulis JSON')
+                    return;
+                }
+                res.status(200).json({ code: 200, msg: "value Soil_Moisture_Index berhasil diubah" });
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
+    
+                addRT(pingTime, jsonFilePathSingleRT); //add record array
+                addLogRequest('editsensor.js', 'Soil_Moisture_Index', pingTime)
+                });
+            } catch (err) {
+                res.status(500).json({ code: 500, error: "Internal Server Error" });
+                addLogError('editsensor.js', 'api/get/edit/sensor?soil_moisture_index', 500, 'Internal Server Error')
+            }
         });
     } else if (soiltempValue !== null && soiltempValue !== undefined && !isNaN(soiltempValue)) {
         fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
@@ -520,6 +614,36 @@ router.get('/edit/sensor', (req, res) => {
             addLogError('editsensor.js', 'api/get/edit/sensor?unit_ph', 500, 'Internal Server Error')
         }
         });
+    } else if(unitwaterValue !== null && unitwaterValue !== undefined){
+        fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
+            if (err) {
+                res.status(500).json({ code: 500, error : 'Gagal membaca file JSON' });
+                addLogError('editsensor.js', 'api/get/edit/sensor?unit_water', 500, 'Gagal membaca file JSON')
+                return;
+            }
+        
+            try {
+                const start = performance();
+                const jsonContent = JSON.parse(data);
+                jsonContent.Unit_Water = unitwaterValue; // Mengubah nilai Pump_Tank menjadi true
+                fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
+                if (err) {
+                    res.status(500).json({ code: 500, error: "gagal menulis JSON" });
+                    addLogError('editsensor.js', 'api/get/edit/sensor?unit_water', 500, 'Gagal menulis JSON')
+                    return;
+                }
+                res.status(200).json({ code: 200, msg: "value Unit_Water berhasil diubah" });
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
+    
+                addRT(pingTime, jsonFilePathSingleRT); //add record array
+                addLogRequest('editsensor.js', 'Unit_Water', pingTime)
+                });
+            } catch (err) {
+                res.status(500).json({ code: 500, error: "Internal Server Error" });
+                addLogError('editsensor.js', 'api/get/edit/sensor?unit_water', 500, 'Internal Server Error')
+            }
+        });
     } else if (unitmoistureValue !== null && unitmoistureValue !== undefined) {
         fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
         if (err) {
@@ -769,9 +893,12 @@ router.get('/edit/sensor', (req, res) => {
 router.get('/edit/batch/sensor', (req, res) => {
     const waterphValue = parseFloat(req.query.water_ph); 
     const waterindexValue = req.query.water_index;
+    const waterflowValue = parseFloat(req.query.water_flow);
+    const waterflowindexValue = req.query.water_flow_index;
     const soilphValue = parseFloat(req.query.soil_ph);
     const soilindexValue = req.query.soil_index;
     const soilmoistureValue = parseFloat(req.query.soil_moisture);
+    const soilmoistureindexValue = req.query.soil_moisture_index;
     const soiltempValue = parseFloat(req.query.soil_temp);
     const airtempValue = parseFloat(req.query.air_temp);
     const airhumidityValue = parseFloat(req.query.air_humidity);
@@ -783,6 +910,7 @@ router.get('/edit/batch/sensor', (req, res) => {
     const tankpercentValue = parseFloat(req.query.tank_percentage);
     const tankcapacityValue = parseFloat(req.query.tank_capacity);
     const unitphValue = req.query.unit_ph;
+    const unitwaterValue = req.query.unit_water;
     const unitmoistureValue = req.query.unit_moisture;
     const unittempValue = req.query.unit_temp;
     const unithumidityValue = req.query.unit_humidity;
@@ -822,9 +950,12 @@ router.get('/edit/batch/sensor', (req, res) => {
             const jsonContent = JSON.parse(data);
             jsonContent.Water_Ph = waterphValue;
             jsonContent.Water_Index = waterindexValue;
+            jsonContent.Water_Flow = waterflowValue;
+            jsonContent.Water_Flow_Index = waterflowindexValue;
             jsonContent.Soil_Ph = soilphValue;
             jsonContent.Soil_Index = soilindexValue;
             jsonContent.Soil_Moisture = soilmoistureValue
+            jsonContent.Soil_Moisture_Index = soilmoistureindexValue
             jsonContent.Soil_Temperature = soiltempValue
             jsonContent.Air_Temperature = airtempValue
             jsonContent.Air_Humidity = airhumidityValue
@@ -836,6 +967,7 @@ router.get('/edit/batch/sensor', (req, res) => {
             jsonContent.Tank_Percentage = tankpercentValue
             jsonContent.Tank_Capacity = tankcapacityValue
             jsonContent.Unit_Ph = unitphValue
+            jsonContent.Unit_Water = unitwaterValue
             jsonContent.Unit_Moisture = unitmoistureValue
             jsonContent.Unit_Temperature = unittempValue
             jsonContent.Unit_Humidity = unithumidityValue

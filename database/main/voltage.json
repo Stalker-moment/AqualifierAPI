@@ -18,6 +18,7 @@
   "Inverter_Frequency": 50,
   "Inverter_PF": 1,
   "Unit_Voltage": "V",
+  "Unit_Capacity": "Ah",
   "Unit_Current": "A",
   "Unit_Power": "Watt",
   "Unit_Energy": "Kwh",

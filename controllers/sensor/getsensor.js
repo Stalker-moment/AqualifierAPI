@@ -75,7 +75,9 @@ router.get('/sensor/:div', (req, res) => {
                 const proccessingdata = {
                     code: 200, 
                     Water_Ph : jsonData.Water_Ph,
-                    Water_Index : jsonData.Water_Index
+                    Water_Index : jsonData.Water_Index,
+                    Water_Flow : jsonData.Water_Flow,
+                    Water_Flow_Index : jsonData.Water_Flow_Index
                 }
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
@@ -92,6 +94,7 @@ router.get('/sensor/:div', (req, res) => {
                     Soil_Ph : jsonData.Soil_Ph,
                     Soil_Index : jsonData.Soil_Index,
                     Soil_Moisture : jsonData.Soil_Moisture,
+                    Soil_Moisture_Index : jsonData.Soil_Moisture_Index,
                     Soil_Temperature : jsonData.Soil_Temperature
                 }
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
@@ -254,6 +257,38 @@ router.get('/sensor/:div', (req, res) => {
 
                 addRT(pingTime, sensorSingleRT); //add record array
                 addLogRequest('getsensor.js', 'water_ph', pingTime)
+            } else if(bagian.toLowerCase() == 'water_flow'){
+                const start = performance(); // Waktu awal sebelum pemrosesan permintaan
+                const datasort = jsonData.Water_Flow;
+                const proccessingdata = {
+                    code: 200, 
+                    Water_Flow : datasort
+                }
+                const formattedJson = JSON.stringify(proccessingdata, null, 2);
+                res.setHeader("Content-Type", "application/json"); 
+                res.send(formattedJson);
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start);
+                // Menghitung selisih waktu dalam milidetik
+
+                addRT(pingTime, sensorSingleRT); //add record array
+                addLogRequest('getsensor.js', 'water_flow', pingTime)
+            } else if(bagian.toLowerCase() == 'water_flow_index'){
+                const start = performance(); // Waktu awal sebelum pemrosesan permintaan
+                const datasort = jsonData.Water_Flow_Index;
+                const proccessingdata = {
+                    code: 200, 
+                    Water_Flow_Index : datasort
+                }
+                const formattedJson = JSON.stringify(proccessingdata, null, 2);
+                res.setHeader("Content-Type", "application/json"); 
+                res.send(formattedJson);
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start);
+                // Menghitung selisih waktu dalam milidetik
+
+                addRT(pingTime, sensorSingleRT); //add record array
+                addLogRequest('getsensor.js', 'water_flow_index', pingTime)
             } else if(bagian.toLowerCase() == 'soil_ph'){
                 const start = performance(); // Waktu awal sebelum pemrosesan permintaan
                 const datasort = jsonData.Soil_Ph;
@@ -299,6 +334,22 @@ router.get('/sensor/:div', (req, res) => {
 
                 addRT(pingTime, sensorSingleRT); //add record array
                 addLogRequest('getsensor.js', 'soil_moisture', pingTime)
+            } else if(bagian.toLowerCase() == 'soil_moisture_index'){
+                const start = performance(); // Waktu awal sebelum pemrosesan permintaan
+                const datasort = jsonData.Soil_Moisture_Index;
+                const proccessingdata = {
+                    code: 200, 
+                    Soil_Moisture_Index : datasort
+                }
+                const formattedJson = JSON.stringify(proccessingdata, null, 2);
+                res.setHeader("Content-Type", "application/json"); 
+                res.send(formattedJson);
+                const end = performance(); // Waktu setelah pemrosesan permintaan
+                const pingTime = (end - start);
+                // Menghitung selisih waktu dalam milidetik
+
+                addRT(pingTime, sensorSingleRT); //add record array
+                addLogRequest('getsensor.js', 'soil_moisture_index', pingTime)
             } else if(bagian.toLowerCase() == 'soil_temperature'){
                 const start = performance(); // Waktu awal sebelum pemrosesan permintaan
                 const datasort = jsonData.Soil_Temperature;
