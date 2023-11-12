@@ -17,7 +17,6 @@ const voltageSingleRT = "./database/RT/voltage/voltageSingleRT.json"
 const voltageBatchRT = "./database/RT/voltage/voltageBatchRT.json"
 
 router.get("/voltage", (req, res) => {
-    const start = performance();
     fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
         console.error("Terjadi kesalahan saat membaca file JSON:", err);
@@ -30,12 +29,6 @@ router.get("/voltage", (req, res) => {
         const formattedJson = JSON.stringify(jsonData, null, 2);
         res.setHeader("Content-Type", "application/json");
         res.send(formattedJson);
-        const end = performance(); // Waktu setelah pemrosesan permintaan
-        const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-        //console.log(`Waktu Ping ke Server(getvoltage): ${pingTime} ms`);
-        addRT(pingTime, voltageRT); //add record array
-        addLogRequest('getvoltage.js', 'All', pingTime)
       } catch (error) {
         console.error("Terjadi kesalahan saat memformat JSON:", error);
         res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -57,19 +50,14 @@ router.get('/voltage/:div', (req, res) => {
       try {
         const jsonData = JSON.parse(data);
         if(!bagian){
-            const start = performance();
+    
             const formattedJson = JSON.stringify(jsonData, null, 2);
             res.setHeader("Content-Type", "application/json");
             res.send(formattedJson);
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, voltageRT); //add record array'
-            addLogRequest('getvoltage.js', 'All', pingTime)
             return
         } else {
             if(bagian.toLowerCase() == 'voltage'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200, 
                     Solar_Voltage : jsonData.Solar_Voltage,
@@ -83,13 +71,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_voltage', pingTime)
             } else if(bagian.toLowerCase() == 'battery'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     Solar_Voltage : jsonData.Solar_Voltage,
@@ -108,7 +91,7 @@ router.get('/voltage/:div', (req, res) => {
 
                 addRT(pingTime, voltageBatchRT); //add record array
             } else if(bagian.toLowerCase() == 'pln'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     PLN_Voltage: jsonData.PLN_Voltage,
@@ -121,13 +104,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_pln', pingTime)
             } else if(bagian.toLowerCase() == 'inverter'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     Inverter_Voltage: jsonData.Inverter_Voltage,
@@ -140,13 +118,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_inverter', pingTime)
             } else if(bagian.toLowerCase() == 'unit'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     Unit_Voltage: jsonData.Unit_Voltage,
@@ -160,13 +133,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_unit', pingTime)
             } else if(bagian.toLowerCase() == 'current'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     PLN_Current : jsonData.PLN_Current,
@@ -176,13 +144,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_current', pingTime)
             } else if(bagian.toLowerCase() == 'power'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     PLN_Power : jsonData.PLN_Power,
@@ -192,13 +155,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_power', pingTime)
             } else if(bagian.toLowerCase() == 'energy'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     PLN_Energy : jsonData.PLN_Energy,
@@ -208,13 +166,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_energy', pingTime)
             } else if(bagian.toLowerCase() == 'frequency'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     PLN_Frequency : jsonData.PLN_Frequency,
@@ -224,13 +177,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, voltageBatchRT); //add record array
-                addLogRequest('getvoltage.js', 'Batch_frequency', pingTime)
             } else if(bagian.toLowerCase() == 'pf'){
-                const start = performance();
+        
                 const proccessingdata = {
                     code: 200,
                     PLN_PF : jsonData.PLN_PF,
@@ -240,13 +188,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageBatchRT);
-                addLogRequest('getvoltage.js', 'Batch_PF', pingTime)
             } else if(bagian.toLowerCase() == 'solar_voltage'){
-                const start = performance();
+        
                 const datasort = jsonData.Solar_Voltage;
                 const proccessingdata = {
                     code: 200,
@@ -255,13 +198,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'solar_voltage', pingTime)
             } else if(bagian.toLowerCase() == 'battery1_voltage'){
-                const start = performance();
+        
                 const datasort = jsonData.Battery1_Voltage;
                 const proccessingdata = {
                     code: 200,
@@ -270,13 +208,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'battery1_voltage', pingTime)
             } else if(bagian.toLowerCase() == 'battery2_voltage'){
-                const start = performance();
+        
                 const datasort = jsonData.Battery2_Voltage;
                 const proccessingdata = {
                     code: 200,
@@ -285,13 +218,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'battery2_voltage', pingTime)
             } else if(bagian.toLowerCase() == 'battery1_capacity'){
-                const start = performance();
+        
                 const datasort = jsonData.Battery1_Capacity;
                 const proccessingdata = {
                     code: 200,
@@ -300,13 +228,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'battery1_capacity', pingTime)
             } else if(bagian.toLowerCase() == 'battery2_capacity'){
-                const start = performance();
+        
                 const datasort = jsonData.Battery2_Capacity;
                 const proccessingdata = {
                     code: 200,
@@ -315,13 +238,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'battery2_capacity', pingTime)
             } else if(bagian.toLowerCase() == 'stepdown_voltage'){
-                const start = performance();
+        
                 const datasort = jsonData.StepDown_Voltage;
                 const proccessingdata = {
                     code: 200,
@@ -330,13 +248,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'stepdown_voltage', pingTime)
             } else if(bagian.toLowerCase() == 'pln_voltage'){
-                const start = performance();
+        
                 const datasort = jsonData.PLN_Voltage;
                 const proccessingdata = {
                     code: 200,
@@ -345,13 +258,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'pln_voltage', pingTime)
             } else if(bagian.toLowerCase() == 'pln_current'){
-                const start = performance();
+        
                 const datasort = jsonData.PLN_Current;
                 const proccessingdata = {
                     code: 200,
@@ -360,13 +268,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'pln_current', pingTime)
             } else if(bagian.toLowerCase() == 'pln_power'){
-                const start = performance();
+        
                 const datasort = jsonData.PLN_Power;
                 const proccessingdata = {
                     code: 200,
@@ -375,13 +278,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'pln_power', pingTime)
             } else if(bagian.toLowerCase() == 'pln_energy'){
-                const start = performance();
+        
                 const datasort = jsonData.PLN_Energy;
                 const proccessingdata = {
                     code: 200,
@@ -390,13 +288,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'pln_energy', pingTime)
             } else if(bagian.toLowerCase() == 'pln_frequency'){
-                const start = performance();
+        
                 const datasort = jsonData.PLN_Frequency;
                 const proccessingdata = {
                     code: 200,
@@ -405,13 +298,7 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'pln_frequency', pingTime)
             } else if(bagian.toLowerCase() == 'pln_pf'){
-                const start = performance();
                 const datasort = jsonData.PLN_PF;
                 const proccessingdata = {
                     code: 200,
@@ -420,13 +307,7 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'pln_pf', pingTime)
             } else if(bagian.toLowerCase() == 'inverter_voltage'){
-                const start = performance();
                 const datasort = jsonData.Inverter_Voltage;
                 const proccessingdata = {
                     code: 200,
@@ -435,13 +316,7 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'inverter_voltage', pingTime)
             } else if(bagian.toLowerCase() == 'inverter_current'){
-                const start = performance();
                 const datasort = jsonData.Inverter_Current;
                 const proccessingdata = {
                     code: 200,
@@ -450,13 +325,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'inverter_current', pingTime)
             } else if(bagian.toLowerCase() == 'inverter_power'){
-                const start = performance();
+        
                 const datasort = jsonData.Inverter_Power;
                 const proccessingdata = {
                     code: 200,
@@ -465,13 +335,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'inverter_power', pingTime)
             } else if(bagian.toLowerCase() == 'inverter_energy'){
-                const start = performance();
+        
                 const datasort = jsonData.Inverter_Energy;
                 const proccessingdata = {
                     code: 200,
@@ -480,13 +345,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'inverter_energy', pingTime)
             } else if(bagian.toLowerCase() == 'inverter_frequency'){
-                const start = performance();
+        
                 const datasort = jsonData.Inverter_Frequency;
                 const proccessingdata = {
                     code: 200,
@@ -495,13 +355,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'inverter_frequency', pingTime)
             } else if(bagian.toLowerCase() == 'inverter_pf'){
-                const start = performance();
+        
                 const datasort = jsonData.Inverter_PF;
                 const proccessingdata = {
                     code: 200,
@@ -510,13 +365,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'inverter_pf', pingTime)
             } else if(bagian.toLowerCase() == 'unit_voltage'){
-                const start = performance();
+        
                 const datasort = jsonData.Unit_Voltage;
                 const proccessingdata = {
                     code: 200,
@@ -525,13 +375,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'unit_voltage', pingTime)
             } else if(bagiann.toLowerCase() == 'unit_capacity'){
-                const start = performance();
+        
                 const datasort = jsonData.Unit_Capacity;
                 const proccessingdata = {
                     code: 200,
@@ -540,12 +385,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json"); 
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addLogRequest('getvoltage.js', 'unit_capacity', pingTime)
             } else if(bagian.toLowerCase() == 'unit_current'){
-                const start = performance();
+        
                 const datasort = jsonData.Unit_Current;
                 const proccessingdata = {
                     code: 200,
@@ -554,13 +395,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'unit_current', pingTime)
             } else if(bagian.toLowerCase() == 'unit_power'){
-                const start = performance();
+        
                 const datasort = jsonData.Unit_Power;
                 const proccessingdata = {
                     code: 200,
@@ -569,13 +405,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'unit_power', pingTime)
             } else if(bagian.toLowerCase() == 'unit_energy'){
-                const start = performance();
+        
                 const datasort = jsonData.Unit_Energy;
                 const proccessingdata = {
                     code: 200,
@@ -584,13 +415,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'unit_energy', pingTime)
             } else if(bagian.toLowerCase() == 'unit_frequency'){
-                const start = performance();
+        
                 const datasort = jsonData.Unit_Frequency;
                 const proccessingdata = {
                     code: 200,
@@ -599,13 +425,8 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'unit_frequency', pingTime)
             } else if(bagian.toLowerCase() == 'unit_pf'){
-                const start = performance();
+        
                 const datasort = jsonData.Unit_PF;
                 const proccessingdata = {
                     code: 200,
@@ -614,11 +435,6 @@ router.get('/voltage/:div', (req, res) => {
                 const formattedJson = JSON.stringify(proccessingdata, null, 2);
                 res.setHeader("Content-Type", "application/json");
                 res.send(formattedJson);
-                const end = performance(); 
-                const pingTime = (end - start).toFixed(2);
-
-                addRT(pingTime, voltageSingleRT);
-                addLogRequest('getvoltage.js', 'unit_pf', pingTime)
             } else {
                 res.status(404).json({ code: 404, error: "Query tidak ditemukan, Query yang tersedia : voltage, battery, pln, inverter, unit, current, power, energy, frequency, pf, solar_voltage, battery1_voltage, battery2_voltage, battery1_capacity, battery2_capacity, stepdown_voltage, pln_voltage, pln_current, pln_power, pln_energy, pln_frequency, pln_pf, inverter_voltage, inverter_current, inverter_power, inverter_energy, inverter_frequency, inverter_pf, unit_voltage, unit_current, unit_power, unit_energy, unit_frequency, unit_pf" });
                 addLogError('getvoltage.js', 'api/get/voltage/:div', 404, "Query tidak ditemukan, Query yang tersedia : voltage, battery, pln, inverter, unit, current, power, energy, frequency, pf, solar_voltage, battery1_voltage, battery2_voltage, battery1_capacity, battery2_capacity, stepdown_voltage, pln_voltage, pln_current, pln_power, pln_energy, pln_frequency, pln_pf, inverter_voltage, inverter_current, inverter_power, inverter_energy, inverter_frequency, inverter_pf, unit_voltage, unit_current, unit_power, unit_energy, unit_frequency, unit_pf")

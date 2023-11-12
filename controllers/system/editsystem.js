@@ -29,7 +29,6 @@ router.get('/edit/system', (req, res) => {
         }
     
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Switch = true; // Mengubah nilai Switch menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -39,11 +38,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "switch diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'Switch_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -68,11 +62,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200,  msg: "switch diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'Switch_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -88,7 +77,6 @@ router.get('/edit/system', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Auto = true; // Mengubah nilai Switch menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -98,11 +86,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Auto diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'Auto_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -118,7 +101,6 @@ router.get('/edit/system', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Auto = false; // Mengubah nilai Switch menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -128,11 +110,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Auto diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'Auto_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -148,7 +125,6 @@ router.get('/edit/system', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             if ((plnValue === 'true' && jsonContent.PLTS === true) || (plnValue === 'false' && jsonContent.PLTS === false)) {
                 res.status(400).json({ code: 400, error: 'PLN and PLTS values should be different (true/false)' });
@@ -163,11 +139,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "PLN diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'PLN_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -183,7 +154,6 @@ router.get('/edit/system', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             if ((plnValue === 'true' && jsonContent.PLTS === true) || (plnValue === 'false' && jsonContent.PLTS === false)) {
                 res.status(400).json({ code: 400, error: 'PLN and PLTS values should be different (true/false)' });
@@ -198,11 +168,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "PLN diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'PLN_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -218,7 +183,6 @@ router.get('/edit/system', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             if ((jsonContent.PLN === true && pltsValue === 'true') || (jsonContent.PLN === false && pltsValue === 'false')) {
                 res.status(400).json({ code: 400, error: 'PLN and PLTS values should be different (true/false)' });
@@ -233,11 +197,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "PLTS diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'PLTS_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500,  error: "Internal Server Error" });
@@ -253,7 +212,6 @@ router.get('/edit/system', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             if ((jsonContent.PLN === true && pltsValue === 'true') || (jsonContent.PLN === false && pltsValue === 'false')) {
                 res.status(400).json({ code: 400, error: 'PLN and PLTS values should be different (true/false)' });
@@ -268,11 +226,6 @@ router.get('/edit/system', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "PLTS diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editsystem.js', 'PLTS_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -314,7 +267,6 @@ router.get('/edit/batch/system', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Switch = switchValue === 'true';
             jsonContent.Auto = autoValue === 'true';
@@ -328,16 +280,56 @@ router.get('/edit/batch/system', (req, res) => {
                     return;
                 }
                 res.status(200).json({ code: 200, msg: 'All values updated successfully' });
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-    
-                //console.log(`Waktu Ping ke Server(getactuator): ${pingTime} ms`);
-                addRT(pingTime, jsonFilePathBatchRT); //add record array
-                addLogRequest('editsystem.js', 'batch', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: 'Internal Server Error' });
             addLogError('editsystem.js', 'api/get/edit/batch/system', 500, 'Internal Server Error')
+        }
+    });
+});
+
+router.get('/edit/batch/system/onlymcu', (req, res) => {
+    const plnValue = req.query.pln;
+    const pltsValue = req.query.plts;
+    // Check if the query parameters are valid (either 'true' or 'false')
+
+    const isValidValue = value => value === 'true' || value === 'false';
+    
+    if (![plnValue, pltsValue].every(isValidValue)) {
+        res.status(400).json({ code: 400, error: 'Please insert full parameter & Query parameters should be either true or false' });
+        addLogError('editsystem.js', 'api/get/edit/batch/system/onlymcu', 400, 'PLN and PLTS values should be different (true/false)')
+        return;
+    }
+
+    if ((plnValue === 'true' && pltsValue === 'true') || (plnValue === 'false' && pltsValue === 'false')) {
+        res.status(400).json({ code: 400, error: 'PLN and PLTS values should be different (true/false)' });
+        addLogError('editsystem.js', 'api/get/edit/batch/system/onlymcu', 400, 'PLN and PLTS values should be different (true/false)')
+        return;
+    }
+
+    fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
+        if (err) {
+            res.status(500).json({ code: 500, error: 'Failed to read JSON file' });
+            addLogError('editsystem.js', 'api/get/edit/batch/system/onlymcu', 500, 'Failed to read JSON file')
+            return;
+        }
+
+        try {
+            const jsonContent = JSON.parse(data);
+            jsonContent.PLN = plnValue === 'true';
+            jsonContent.PLTS = pltsValue === 'true';
+
+            fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
+                if (err) {
+                    res.status(500).json({ code: 500, error: 'Failed to write JSON' });
+                    addLogError('editsystem.js', 'api/get/edit/batch/system/onlymcu', 500, 'Failed to write JSON')
+                    return;
+                }
+                res.status(200).json({ code: 200, msg: 'All values updated successfully' });
+            });
+        } catch (err) {
+            res.status(500).json({ code: 500, error: 'Internal Server Error' });
+            addLogError('editsystem.js', 'api/get/edit/batch/system/onlymcu', 500, 'Internal Server Error')
         }
     });
 });

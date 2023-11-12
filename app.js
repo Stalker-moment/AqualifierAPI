@@ -27,7 +27,8 @@ const getactuatorController = require('./controllers/actuator/getactuator')
 const editactuatorController = require('./controllers/actuator/editactuator')
 
 const getapiRTController = require('./controllers/api/RT/getRT')
-const fileapiRTController = require('./controllers/api/RT//fileRT')
+const fileapiRTController = require('./controllers/api/RT/fileRT')
+const getapiErrorController = require('./controllers/api/error/getError')
 const fileapiErrorController = require('./controllers/api/error/fileError')
 
 //IMPORT FUNCTION
@@ -55,6 +56,7 @@ app.use('/api/get', editactuatorController);
 //API
 app.use('/api/get', getapiRTController);
 app.use('/api/file', fileapiRTController);
+app.use('/api/get', getapiErrorController);
 app.use('/api/file', fileapiErrorController);
 
 /*
@@ -66,7 +68,7 @@ app.get("/api/test", (req, res) => {
 
 
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8001;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

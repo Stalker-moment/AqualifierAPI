@@ -6,7 +6,7 @@ const axios = require('axios');
 const performance = require('performance-now');
 
 const jsonFilePath = './database/main/actuator.json'
-const jsonFilePathSingleRT = './database/RT//actuatoreditactuatorSingleRT.json'
+const jsonFilePathSingleRT = './database/RT/actuator/editactuatorSingleRT.json'
 const jsonFilePathBatchRT = './database/RT/actuator/editactuatorBatchRT.json'
 
 //path function 
@@ -29,7 +29,6 @@ router.get('/edit/actuator', (req, res) => {
         }
     
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Pump_Tank = true; // Mengubah nilai Pump_Tank menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -39,11 +38,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Pump_Tank diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Pump_Tank_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -59,7 +53,6 @@ router.get('/edit/actuator', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Pump_Tank = false; // Mengubah nilai Pump_Tank menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -69,11 +62,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Pump_Tank diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Pump_Tank_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -89,7 +77,6 @@ router.get('/edit/actuator', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Pump_Booster = true; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -99,11 +86,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Pump_Booster diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Pump_Booster_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -119,7 +101,6 @@ router.get('/edit/actuator', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Pump_Booster = false; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -129,11 +110,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Pump_Booster diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Pump_Booster_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -144,12 +120,11 @@ router.get('/edit/actuator', (req, res) => {
         fs.readFile(jsonFilePath, 'utf-8', (err, data) => {
         if (err) {
             res.status(500).json({ code: 500, error : 'Gagal membaca file JSON' });
-            addLogError('editactuactor.js', 'api/get/edit/actuator?selenoid=true', 500, 'Gagal membaca file JSON')
+            addLogError('editactuactor.js', 'api/get/edit/actuator?selenoid=false', 500, 'Gagal membaca file JSON')
             return;
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Selenoid_Valve = true; // Mengubah nilai Selenoid_Valve menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -159,11 +134,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Selenoid_Valve diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Selenoid_Valve_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -179,7 +149,6 @@ router.get('/edit/actuator', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Selenoid_Valve = false; // Mengubah nilai Selenoid_Valve menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -189,11 +158,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Selenoid_Valve diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Selenoid_Valve_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -209,7 +173,6 @@ router.get('/edit/actuator', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Lamp = true; // Mengubah nilai Lamp menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -219,11 +182,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Lamp diubah menjadi true" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Lamp_true', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -239,7 +197,6 @@ router.get('/edit/actuator', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Lamp = false; // Mengubah nilai Lamp menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -249,11 +206,6 @@ router.get('/edit/actuator', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "Lamp diubah menjadi false" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editactuator.js', 'Lamp_false', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -289,7 +241,6 @@ router.get('/edit/batch/actuator', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Pump_Tank = pumptankValue === 'true';
             jsonContent.Pump_Booster = pumpboosterValue === 'true';
@@ -303,11 +254,6 @@ router.get('/edit/batch/actuator', (req, res) => {
                     return;
                 }
                 res.status(200).json({ code: 200, msg: 'All values updated successfully' });
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, jsonFilePathBatchRT); //add record array
-                addLogRequest('editactuator.js', 'batch', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: 'Internal Server Error' });

@@ -52,7 +52,6 @@ router.get('/edit/voltage', (req, res) => {
         }
     
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Solar_Voltage = solarvoltValue; // Mengubah nilai Pump_Tank menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -62,11 +61,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Solar_Voltage berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Solar_Voltage', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -82,7 +76,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Battery1_Voltage = batt1voltValue; // Mengubah nilai Pump_Tank menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -92,11 +85,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Battery1_Voltage berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Battery1_Voltage', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -112,7 +100,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Battery2_Voltage = batt2voltValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -122,11 +109,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Battery2_Voltage berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Battery2_Voltage', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -142,7 +124,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Battery1_Capacity = batt1capValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -152,11 +133,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Baterry1_Capacity berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Battery1_Capacity', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -172,7 +148,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Battery2_Capacity = batt2capValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -182,11 +157,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Battery2_Capacity berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Battery2_Capacity', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -202,7 +172,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.StepDown_Voltage = stepdownvolValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -212,11 +181,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value StepDown_Voltage berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'StepDown_Voltage', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -232,7 +196,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.PLN_Voltage = plnvoltValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -242,11 +205,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value PLN_Voltage berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'PLN_Voltage', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -262,7 +220,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.PLN_Current = plncurrentValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -272,11 +229,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value PLN_Current berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'PLN_Current', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -292,7 +244,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.PLN_Power = plnpowerValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -302,11 +253,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value PLN_Power berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'PLN_Power', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -322,7 +268,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.PLN_Energy = plnenergyValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -332,11 +277,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value PLN_Energy berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'PLN_Energy', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -352,7 +292,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.PLN_Frequency = plnfreqValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -362,11 +301,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value PLN_Frequency berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'PLN_Frequency', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -382,7 +316,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.PLN_PF = plnpfValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -392,11 +325,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value PLN_PF berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'PLN_PF', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -412,7 +340,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Inverter_Voltage = invertervoltValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -422,11 +349,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Inverter_Voltage berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Inverter_Voltage', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -442,7 +364,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Inverter_Current = invertercurrentValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -452,11 +373,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Inverter_Current berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Inverter_Current', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -472,7 +388,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Inverter_Power = inverterpowerValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -482,11 +397,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Inverter_Power berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Inverter_Power', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -502,7 +412,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Inverter_Energy = inverterenergyValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -512,11 +421,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Inverter_Energy berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Inverter_Energy', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -532,7 +436,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Inverter_Frequency = inverterfreqValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -542,11 +445,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Inverter_Frequency berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Inverter_Frequency', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -562,7 +460,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Inverter_PF = inverterpfValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -572,11 +469,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Inverter_PF berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Inverter_PF', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -592,7 +484,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Unit_Voltage = unitvoltValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -602,11 +493,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Unit_Voltage berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Unit_Voltage', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -622,7 +508,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Unit_Capacity = unitcapacityValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -632,11 +517,6 @@ router.get('/edit/voltage', (req, res) => {
                     return;
                 }
                 res.status(200).json({ code: 200, msg: "value Unit_Capacity berhasil diubah" });
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-                addRT(pingTime, jsonFilePathSingleRT); //add record array
-                addLogRequest('editvoltage.js', 'Unit_Capacity', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -652,7 +532,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Unit_Current = unitcurrentValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -662,11 +541,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Unit_Current berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Unit_Current', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -682,7 +556,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Unit_Power = unitpowerValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -692,11 +565,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Unit_Power berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Unit_Power', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -712,7 +580,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Unit_Energy = unitenergyValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -722,11 +589,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Unit_Energy berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Unit_Energy', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -742,7 +604,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Unit_Frequency = unitfreqValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -752,11 +613,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Unit_Frequency berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Unit_Frequency', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -772,7 +628,6 @@ router.get('/edit/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Unit_PF = unitpfValue; // Mengubah nilai Pump_Booster menjadi true
             fs.writeFile(jsonFilePath, JSON.stringify(jsonContent, null, 2), (err) => {
@@ -782,11 +637,6 @@ router.get('/edit/voltage', (req, res) => {
                 return;
             }
             res.status(200).json({ code: 200, msg: "value Unit_PF berhasil diubah" });
-            const end = performance(); // Waktu setelah pemrosesan permintaan
-            const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-
-            addRT(pingTime, jsonFilePathSingleRT); //add record array
-            addLogRequest('editvoltage.js', 'Unit_PF', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: "Internal Server Error" });
@@ -834,13 +684,13 @@ router.get('/edit/batch/voltage', (req, res) => {
                             , invertervoltValue, invertercurrentValue, inverterpowerValue, inverterenergyValue, inverterfreqValue, inverterpfValue];
     const arraystringvalue = [unitvoltValue, unitcurrentValue, unitpowerValue, unitenergyValue, unitfreqValue, unitpfValue];
 
-    if (arrayfloatvalue.every(isValidValueFload)) {
-        res.status(400).json({ code: 400, error: 'Please insert full parameter & Query parameters should be either float other than "Unit"' });
-        addLogError('editvoltage.js', 'api/get/edit/batch/voltage', 400, 'Please insert full parameter & Query parameters should be either float other than "Unit"')
+    if (!arrayfloatvalue.every(isValidValueFload)) {
+        res.status(400).json({ code: 400, error: 'Please insert full parameter & Query parameters should be valid float other than "Unit"' });
+        addLogError('editvoltage.js', 'api/get/edit/batch/voltage', 400, 'Please insert valid float for parameters other than "Unit"');
         return;
-    }
+    }    
 
-    if (arraystringvalue.every(isValidValueString)) {
+    if (!arraystringvalue.every(isValidValueString)) {
         res.status(400).json({ code: 400, error: 'Please insert full parameter & Query parameters should be either String for "Unit"' });
         addLogError('editvoltage.js', 'api/get/edit/batch/voltage', 400, 'Please insert full parameter & Query parameters should be either String for "Unit"')
         return;
@@ -854,7 +704,6 @@ router.get('/edit/batch/voltage', (req, res) => {
         }
 
         try {
-            const start = performance();
             const jsonContent = JSON.parse(data);
             jsonContent.Solar_Voltage = solarvoltValue
             jsonContent.Battery1_Voltage = batt1voltValue
@@ -889,12 +738,6 @@ router.get('/edit/batch/voltage', (req, res) => {
                     return;
                 }
                 res.status(200).json({ code: 200, msg: 'All values updated successfully' });
-                const end = performance(); // Waktu setelah pemrosesan permintaan
-                const pingTime = (end - start).toFixed(2); // Menghitung selisih waktu dalam milidetik
-    
-                //console.log(`Waktu Ping ke Server(getactuator): ${pingTime} ms`);
-                addRT(pingTime, jsonFilePathBatchRT); //add record array
-                addLogRequest('editvoltage.js', 'batch', pingTime)
             });
         } catch (err) {
             res.status(500).json({ code: 500, error: 'Internal Server Error' });
@@ -904,7 +747,3 @@ router.get('/edit/batch/voltage', (req, res) => {
 });
 
 module.exports = router;
-
-
-
-
