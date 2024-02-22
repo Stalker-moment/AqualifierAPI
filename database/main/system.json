@@ -1,6 +1,6 @@
 {
-  "Switch": true,
-  "Auto": true,
+  "Switch": false,
+  "Auto": false,
   "PLN": false,
   "PLTS": true
 }

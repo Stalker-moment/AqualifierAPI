@@ -10,6 +10,7 @@
   "Soil_Temperature": 23.9,
   "Air_Temperature": 28.9,
   "Air_Humidity": 89.7,
+  "Water_Temperature": 28.9,
   "Anemo": 100,
   "Anemo_Index": "Kencang",
   "LDR": 90,
